@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para ti, mi vida 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fef2f4;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d62839;
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+    }
+
+    #bouquet {
+  font-size: 5rem;
+  display: none;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+  animation: float 3s ease-in-out infinite;
+  line-height: 1;
+}
+
+
+
+    #note {
+      display: none;
+      background-color: rgba(255, 240, 245, 0.95);
+      padding: 15px;
+      border-radius: 15px;
+      border: 2px dashed #d62839;
+      max-width: 320px;
+      font-size: 1rem;
+      color: #b5173f;
+      margin-top: 30px;
+      animation: fadeIn 0.8s ease;
+      box-shadow: 0 6px 12px rgba(214, 40, 57, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #surpriseBtn, #backToStartBtn {
+      margin-top: 12px;
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(214, 40, 57, 0.3);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    #surpriseBtn:hover, #backToStartBtn:hover {
+      background-color: #d62839;
+      transform: scale(1.05);
+    }
+
+    #backToStartBtn {
+      display: none;
+    }
+
+    #hint {
+      font-size: 0.8rem;
+      color: #555;
+      margin-top: 15px;
+      opacity: 1.2;
+      display: none;
+    }
+    @keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+  </style>
+</head>
+<body>
+    <h1>Un regalito más para ti... 💝</h1>
+
+    <div id="bouquet">💐</div>
+    
+    <div id="hint">✨ Da click en el ramo para ver la nota ✨</div>
+    
+    <div id="note">
+      Para ti, puede que no te las pueda dar hoy físicamente,  
+      pero sí hago esto con mucho, mucho amor.  
+      Te amo muchísimo, recuérdalo mi vida 💖
+    </div>
+    
+    <button id="surpriseBtn">¿Una última sorpresa?</button>
+    <button id="backToStartBtn" onclick="window.location.href='index.html'">🌟 Volver al inicio</button>
+    
+<audio id="miAudio" loop>
+    <source src="Someday - Zombies (Color Coded Lyrics).mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+  const bouquet = document.getElementById('bouquet');
+  const note = document.getElementById('note');
+  const hint = document.getElementById('hint');
+  const surpriseBtn = document.getElementById('surpriseBtn');
+  const backToStartBtn = document.getElementById('backToStartBtn');
+  const miAudio = document.getElementById("miAudio");
+
+  surpriseBtn.addEventListener('click', () => {
+    bouquet.style.display = 'block';
+    hint.style.display = 'block';
+    surpriseBtn.style.display = 'none';
+  });
+
+  bouquet.addEventListener('click', () => {
+    bouquet.style.transform = "scale(1.1)";
+    note.style.display = 'block';
+    hint.style.display = 'none';
+    backToStartBtn.style.display = 'inline-block';
+
+    // 🎶 Reproducir música al hacer clic en el ramo
+    miAudio.play()
+      .then(() => {
+        console.log("Audio reproduciéndose");
+      })
+      .catch((error) => {
+        console.log("No se pudo reproducir el audio:", error);
+        alert("💡 Activa el sonido o revisa si el archivo cargó bien.");
+      });
+  });
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Una carta para ti 💌</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: 'Fredoka', sans-serif;
+      flex-direction: column;
+    }
+
+    .carta {
+      width: 950px;
+      height: 350px;
+      background-color: white;
+      border: 2px solid #ff6b6b;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      perspective: 1000px;
+      cursor: pointer;
+      transition: transform 1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 10;
+      flex-direction: column;
+    }
+
+    .carta.abierta {
+      transform: scale(1.1);
+    }
+
+    .mensaje-previo {
+      font-size: 1.2rem;
+      color: #d62839;
+      margin-bottom: 10px;
+      animation: fadeIn 1.5s ease-in-out;
+      text-align: center;
+    }
+
+    .mensaje {
+      display: none;
+      font-size: 0.8rem;
+      color: #e63946;
+      padding: 10px;
+      text-align: justify;
+    }
+
+    .carta .mensaje-previo {
+      display: block;
+    }
+
+    .carta.abierta .mensaje-previo {
+      display: none;
+    }
+
+    .carta.abierta .mensaje {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    
+    .enlace {
+  display: none;
+  margin-top: 50px; /* antes tenía 15px, lo aumentamos */
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff6b6b;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10; 
+}
+
+.enlace:hover {
+  background-color: #e63946;
+  transform: scale(1.05);
+}
+
+    /* Asegura que el botón se muestre cuando la carta se abre */
+    .carta.abierta ~ .enlace {
+  display: inline-block;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.carta.abierta ~ .enlace {
+  animation: latido 1.5s infinite;
+}
+
+
+  </style>
+</head>
+<body>
+
+<canvas id="fuegosCanvas"></canvas>
+
+<div class="carta" onclick="abrirCarta()">
+  <div class="mensaje-previo">De: mí </div>
+  <div class="mensaje-previo"> para: ti ✨💖</div>
+  <div class="mensaje">Holaaaaa mi vida!!!!!, espero que te vaya gustando, ya sabes que tienes una novia medio nerd.....ni se diga jajaja, 
+    ay no soy una ñoña,o bueno, no sé si  más ñoña o teta, que diferencia hay??, bueno ese no es el punto. Oficialmente 
+    empecé este coso ayer osea ayer de cuando 
+    estoy escibiendo esta cartita, 📜( osea el 13-abril-2025), lo ví, bueno ví uno de snoopy que probablemente también haga, pero en ese caso
+     tendría 
+    que acabarlo antes de entregar esto porque ajá, sería una sorpresa también pero bueno ya  que me extiendo de más jajaja, es pero que la canción se escuche 
+    porque siento que esta canción describe algunas cosas, y la verdad me gusta mucho (aunque no esté oficialmente al aire ), pero igual espero que a ti también
+    te guste.Ahora si el punto es que quiero 
+    que sepas que te amo, quiero demostrate que te amo de verdad, que quiero que te sientas amada, quiero hacerte sentir amada de verdad, 
+    me da miedo lastimarte más, quiero demostrarte que puedo, la verdad me dolió mucho haberla cagado y por eso me da miedo volver a regarla,
+    y a ver yo sé que el hacerlo una vez puede que no signifique mucho se trata de realmente hacerlo, de nada sirve hacerlo una vez y olvidarse 
+    después, entiendo eso, y quiero que sepas y demostrarte que realmente me esfuerzo que fuera de hacerlo por compromiso o 
+    algo por el estilo lo hago con amor y 
+    porque te amo y quiero trabajar para ser mejor para ti, porque quiero merecerte ("porque yo estoy trabajando para darte todo aquello que mereces, todo bello").
+    Si algo (de las muchas cosas que me has enseñado) he aprendido es que el querer es poder, de no ser por ti seguiría contestando mensajes
+    quién sabe cuando y es más yo creo que ni contestaría,
+    y digo de no ser por ti ni siquiera me vendría a la mente hacer algo como esto, nunca en l avida me hubiera imaginado que yo estaría 
+    haciendo algo así jajajaja, mi yo de 12 se estaría burlando a más no poder de mí, hay tanta cosas que agradecerte de verdad, no sabes lo 
+    afortunada que me siento de verdad de habernos conocido
+    y de arriesgarme  y de compartir contigo mi vida, no sabes cuanto anhelo el día de nuestra boda (como dice la canción de fondo "igual y te 
+    regalo mi apellido en la forma de un anillo de papel", solo con la diferencia de que yo quiero que tu me des tu apellido jajaja y que sea con un 
+    anillo de al devis), nuestra casa (igual como en la canción "y nos compre esa mansión en las canarias, con un muro de cristal y el monet"), mil y un cosas que nos 
+    faltan vivir, tantos lugares a los que ir y cosas nuevas que descubrir he intentar, 
+    de verdad las ganas que tengo de todo sea contigo me llenan, de verdad contigo siento que todo es posible, que somos tu y yo contra el mundo 💖💌, 
+    hay muchisimo mas por decir pero 
+    con esto me falta esapcio :/. Por último y no menos importante, al contrario lo más importante: TE AMO. 
+    Te amo con todo de mi, te amo de aquí a la luna a pasitos 
+    de tortuga, de aquí al sol a pasito de caracol, de aquí al fondo del mar a brinquitos de medusa y todo eso de regreso mil veces❤️.
+    Y bueno, las palabras siempre van a sobrar y espacio siempre va a faltar la verdad, pero eso, que te amo verdaderamente TE AMO MIA ELUNEY MORENO CORTES!!!!!.
+    Cada parte de ti la amo infinitamente recuérdalo.🫶🫶🫶</div></div>
+</div>
+
+<a class="enlace" href="recuerdos.html">Haz clic aquí para continuar 💌</a>
+
+
+<audio id="fondoExtra" loop>
+    <source src="NSQK - Monet [Letra].mp3" type="audio/mpeg">
+  </audio>
+  
+  <script>
+    function abrirCarta() {
+      const carta = document.querySelector(".carta");
+      carta.classList.add("abierta");
+      lanzarFuegos();
+      setInterval(() => {
+      lanzarFuegos();
+      }, 4000);
+  
+      // 🎵 Reproduce música al abrir
+      const audio = document.getElementById("fondoExtra");
+      audio.volume = 0.5; // Puedes ajustar el volumen si quieres
+      audio.play().catch(e => console.log("Autoplay bloqueado"));
+    }
+  
+    // Fuegos artificiales centrados 🎆
+    const canvas = document.getElementById("fuegosCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  
+    function lanzarFuegos() {
+      for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+          crearExplosion(
+            canvas.width / 2 + (Math.random() * 300 - 150),
+            canvas.height / 2 + (Math.random() * 300 - 150)
+          );
+        }, i * 400);
+      }
+    }
+  
+    function crearExplosion(x, y) {
+      const colores = ["#ff6b6b", "#ffb703", "#8ecae6", "#b5179e", "#06d6a0"];
+      let particulas = [];
+  
+      for (let i = 0; i < 100; i++) {
+        particulas.push({
+          x: x,
+          y: y,
+          radius: Math.random() * 8 + 6,
+          color: colores[Math.floor(Math.random() * colores.length)],
+          angle: Math.random() * 2 * Math.PI,
+          speed: Math.random() * 6 + 4,
+          alpha: 1
+        });
+      }
+  
+      const intervalo = setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particulas.forEach(p => {
+          p.x += Math.cos(p.angle) * p.speed;
+          p.y += Math.sin(p.angle) * p.speed;
+          p.alpha -= 0.005; // 💫 Se desvanecen más lento
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+          ctx.fillStyle = `rgba(${hexToRgb(p.color)},${p.alpha})`;
+          ctx.fill();
+        });
+  
+        particulas = particulas.filter(p => p.alpha > 0);
+        if (particulas.length === 0) clearInterval(intervalo);
+      }, 30);
+    }
+  
+    function hexToRgb(hex) {
+      const bigint = parseInt(hex.replace("#", ""), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `${r},${g},${b}`;
+    }
+  
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+  
+
+</body>
+</html>
+

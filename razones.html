@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Razones por las que te amo 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(to bottom, #fef6f6, #fdecef);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      color: #e63946;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .razon {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 40px;
+      min-height: 80px;
+      transition: all 0.4s ease;
+    }
+
+    button {
+      background-color: #ff6b6b;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #fa5252;
+    }
+
+    /* Animación de los iconos flotantes */
+    .floating-icon {
+      position: absolute;
+      top: -50px;
+      animation: fallIcon 5s ease-in infinite;
+    }
+
+    @keyframes fallIcon {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Razones por las que te amo 💘</h1>
+  <div class="razon" id="razonTexto">Haz clic abajo ❤️</div>
+  <button onclick="mostrarSiguiente()">Siguiente razón ➡️</button>
+
+  <!-- 🎶 Audio (activado al hacer clic) -->
+  <audio id="musica" loop>
+    <source src="nsqk - NADIE MÁS! (Visualizer).mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const razones = [
+      "Porque tu iluminas mis días 🌞",
+      "Porque me haces sentir amada cada instante 💖",
+      "Porque nuestros momentos juntas son lo mejor 🌷",
+      "Porque contigo, me siento completa ✨",
+      "Porque amo cada parte de ti 💘",
+      "Porque me haces sentir segura 🎀",
+      "Porque te admiro y haces que te admire cada día más y más 👀",
+      "Porque me inspiras a ser mejor cada día 🚀",
+      "Por todo lo que enseñas e inspiras 🌸",
+      "Porque eres la mejor parte de mis días 💌",
+      "Porque a tu lado veo un futuro como nunca lo había visto 🐾",
+      "Porque eres mi hogar y mi paz 🏡",
+      "Porque eres mi canción favorita, y la quiero escuchar toda mi vida 🎶",
+      "Porque eres la persona más maravillosa que he conocido 💫",
+      "Porque te veo sonreír y me gustas más 💞",
+      "Porque pintas de colores mi vida 🌈",
+      "Porque verte feliz me hace inmensamente feliz 😄",
+      "Porque eres tú no quiero a nadie más 🌟",
+      "Y porque no me alcanza el espacio para decir todas tus virtudes, valores, fortalezas, ni tampoco todas las razones por las que te amo 🤍 ",
+
+    ];
+  
+    let index = 0;
+    let musica = document.getElementById("musica");
+    let musicaIniciada = false;
+  
+    function mostrarSiguiente() {
+      const texto = document.getElementById("razonTexto");
+      const boton = document.querySelector("button");
+  
+      if (!musicaIniciada) {
+        musica.play().catch(() => {});
+        musicaIniciada = true;
+      }
+  
+      if (index < razones.length) {
+        texto.innerText = razones[index];
+        index++;
+  
+        if (index === razones.length) {
+          // Cambiamos el texto del botón en la última razón
+          boton.innerText = "Abrir una carta especial 💌";
+        }
+      } else {
+        // Redirigir a la página de la carta
+        window.location.href = "carta.html"; // Aquí asegúrate de que la página de carta se llame así
+      }
+    }
+  
+    function createFloatingIcons() {
+      const icons = [
+        'https://img.icons8.com/emoji/48/000000/red-heart.png',
+      ];
+  
+      setInterval(() => {
+        let icon = document.createElement("img");
+        icon.classList.add("floating-icon");
+        icon.src = icons[Math.floor(Math.random() * icons.length)];
+  
+        // Tamaño aleatorio de iconos
+        let size = Math.random() * 30 + 20;
+        icon.style.width = size + "px";
+        icon.style.height = size + "px";
+        icon.style.left = Math.random() * 100 + "vw";
+  
+        document.body.appendChild(icon);
+  
+        setTimeout(() => {
+          icon.remove();
+        }, 5000);
+      }, 400);
+    }
+  
+  </script>
+  
+</body>
+</html>
+
+
+

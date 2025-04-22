@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi niña bella 🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(to bottom, #fff8f0, #ffe4e1);
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header {
+      margin-top: 50px;
+      animation: fadeIn 2s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #e63946;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      color: #6d6875;
+    }
+
+    .dog-icon {
+  font-size: 6rem;
+  cursor: pointer;
+  margin: 30px 0 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+
+    .notita {
+      font-size: 1.2rem;
+      color: #ff6b6b;
+      margin-bottom: 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+    .btn-continuar {
+      text-decoration: none;
+      background-color: #ff6b6b;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-continuar:hover {
+      background-color: #fa5252;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    audio {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hola mi amor 💌</h1>
+    <h2>Espero que te guste mucho mi vida hermosa, lo hice con mucho mucho amor para ti 💖</h2>
+    
+    <div class="dog-icon" onclick="iniciar()">🐶</div>
+
+    <p class="notita">💖 Haz clic en el perrito para comenzar y escuchar una sorpresita 🎶</p>
+    <a class="btn-continuar" href="razones.html">Continuar ➡️</a>
+
+  </header>
+
+  <audio id="miAudio" loop>
+    <source src="sailorsong1.mp3" type="audio/mpeg">
+  
+  </audio>
+
+  <script>
+    function iniciar() {
+      const audio = document.getElementById("miAudio");
+
+
+      // Intenta cargar y reproducir el audio
+      audio.pause();
+      audio.currentTime = 0;
+      audio.muted = false;
+      audio.play().then(() => {
+        console.log("Audio reproducido correctamente");
+      }).catch((error) => {
+        console.log("Error al reproducir el audio:", error);
+        alert("⚠️ Activa el sonido o revisa si el archivo se cargó bien.");
+      });
+  }
+  </script>
+</body>
+</html>
+

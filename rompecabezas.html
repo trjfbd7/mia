@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rompecabezas 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(145deg, #ffeef5, #ffe0eb);
+      font-family: 'Fredoka', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #d94f7f;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px #ffffffaa;
+      animation: aparecer 2s ease-in-out;
+    }
+
+    #puzzleContainer {
+      position: relative;
+      width: 640px;
+      height: 480px;
+      display: flex;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #ffffffcc;
+      transition: transform 0.5s ease;
+    }
+
+    .piece {
+      width: 80px;
+      height: 60px;
+      background-image: url("img/rompecabezas.jpeg");
+      background-size: 640px 480px;
+      border: 1px solid #f3c1d1;
+      transition: transform 0.3s;
+      cursor: grab;
+    }
+
+    .piece:hover {
+      transform: scale(1.05);
+      z-index: 2;
+    }
+
+    #nextBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #fcbad3;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      color: #9e3939;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    #nextBtn:hover {
+      background-color: #e280a3;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #playMusicBtn {
+  background: linear-gradient(145deg, #ffb6c1, #ffc0cb);
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(255, 182, 193, 0.6);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+#playMusicBtn:hover {
+  background: linear-gradient(145deg, #ffa6c9, #ff94b8);
+  transform: scale(1.05);
+  box-shadow: 0 8px 14px rgba(255, 182, 193, 0.8);
+}
+
+  </style>
+</head>
+<body>
+  <h1>Un rompecabezas!!! 💞</h1>
+  <div id="puzzleContainer"></div>
+  <button id="nextBtn" onclick="window.location.href='final.html'">Siguiente página 💌</button>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="Every Breath You Take.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <button id="playMusicBtn" onclick="document.getElementById('bgMusic').play()">🎵</button>
+
+
+  
+
+  <script>
+    const container = document.getElementById('puzzleContainer');
+    const rows = 8;
+    const cols = 8;
+    const pieceWidth = 640 / cols;
+    const pieceHeight = 480 / rows;
+
+    const positions = [];
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        positions.push({ x, y });
+      }
+    }
+
+    // Mezclar posiciones
+    const shuffled = positions.slice().sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(pos => {
+      const piece = document.createElement('div');
+      piece.className = 'piece';
+      piece.style.backgroundPosition = `-${pos.x * pieceWidth}px -${pos.y * pieceHeight}px`;
+      piece.draggable = true;
+      piece.dataset.correctX = pos.x;
+      piece.dataset.correctY = pos.y;
+      container.appendChild(piece);
+    });
+
+    // Hacer drag & drop funcional
+    let dragged;
+
+    container.addEventListener('dragstart', e => {
+      if (e.target.classList.contains('piece')) {
+        dragged = e.target;
+      }
+    });
+
+    container.addEventListener('dragover', e => {
+      e.preventDefault();
+    });
+
+    container.addEventListener('drop', e => {
+      if (e.target.classList.contains('piece') && e.target !== dragged) {
+        const draggedClone = dragged.cloneNode(true);
+        const targetClone = e.target.cloneNode(true);
+
+        container.replaceChild(draggedClone, e.target);
+        container.replaceChild(targetClone, dragged);
+
+        addDragListeners();
+      }
+    });
+
+    function addDragListeners() {
+      document.querySelectorAll('.piece').forEach(piece => {
+        piece.draggable = true;
+      });
+    }
+
+    addDragListeners();
+  </script>
+</body>
+</html>
+

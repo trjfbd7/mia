@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Laberinto🐾💘</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffe4f2;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+}
+
+    h1 {
+      color: #d62839;
+      margin: 30px 0 10px;
+      font-size: 2rem;
+    }
+
+    #gameCanvas {
+  background-color: #fff0f5;
+  border: 5px double #ff6b81;
+  box-shadow: 0 0 15px rgba(255, 107, 129, 0.5);
+  width: 480px;
+  height: 352px;
+  max-width: 90vw;
+}
+
+
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+
+    button {
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(214, 40, 57, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d62839;
+    }
+
+    #nextPageBtn {
+      background-color: #fca3cc;
+    }
+
+    #nextPageBtn:hover {
+      background-color: #e36399;
+    }
+
+    #message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(255, 240, 245, 0.95);
+      padding: 30px 20px;
+      border: 3px dotted #d62839;
+      border-radius: 20px;
+      font-size: 1.3rem;
+      color: #b5173f;
+      max-width: 90%;
+      width: 400px;
+      box-shadow: 0 6px 12px rgba(214, 40, 57, 0.4);
+      animation: pulse 1.5s infinite alternate;
+      z-index: 10;
+    }
+
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(1.05); }
+    }
+    .game-instructions {
+  background-color: #fff5f9;
+  border: 2px dashed #ff8fa3;
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 10px;
+  color: #b5173f;
+  font-size: 1rem;
+  width: 90%;
+  max-width: 500px;
+}
+
+
+  </style>
+</head>
+<body>
+  <h1>Laberinto 🐾</h1>
+  <p class="game-instructions">
+   Presiona iniciar y usa las flechas del teclado ⬆️⬇️⬅️➡️ para moverte por el laberinto ✨💌.
+  </p>
+  
+  <canvas id="gameCanvas" width="600" height="440"></canvas>
+
+  <div class="button-group">
+    <button id="startBtn">Iniciar Juego</button>
+    <button id="nextPageBtn" onclick="window.location.href='final.html'">Ir a la siguiente página 💌</button>
+  </div>
+
+  <div id="message">
+    🎉 ¡Felicidades llegaste a la meta! 💖🐶💌<br><br>
+    "Me encantaría recorrer este laberinto llamado vida contigo, así dé cientos de vueltas y haya cientos de caminos diferentes, 
+    quiero que las demos y los recorramos juntas ❤️."
+  </div>
+  <audio id="miAudio" loop>
+    <source src="Manuel Medrano - Donde Nadie Pueda Ir.mp3" type="audio/mpeg">
+  </audio>
+  
+
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const tileSize = 40;
+
+    const maze = [
+      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+      [1,0,0,1,0,0,0,1,0,0,0,1,0,0,1],
+      [1,0,1,1,0,1,0,1,1,1,0,1,0,1,1],
+      [1,0,1,0,0,1,0,0,0,1,0,0,0,0,1],
+      [1,0,1,0,1,1,1,1,0,1,1,1,1,0,1],
+      [1,0,0,0,1,0,0,0,0,0,0,0,1,0,1],
+      [1,1,1,0,1,0,1,1,1,1,1,0,1,0,1],
+      [1,0,0,0,0,0,1,0,0,0,1,0,1,0,1],
+      [1,0,1,1,1,1,1,0,1,0,1,1,1,0,1],
+      [1,0,0,0,0,0,0,0,1,0,0,0,0,0,1],
+      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    ];
+
+    let player = { x: 1, y: 1 };
+    const goal = { x: 13, y: 9 };
+
+    function drawMaze() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let y = 0; y < maze.length; y++) {
+        for (let x = 0; x < maze[y].length; x++) {
+          if (x === goal.x && y === goal.y) {
+            ctx.fillStyle = '#ffe66d'; // meta
+          } else {
+            ctx.fillStyle = maze[y][x] === 1 ? '#d62839' : '#fff';
+          }
+          ctx.fillRect(x * tileSize, y * tileSize, tileSize, tileSize);
+          ctx.strokeStyle = '#ffb3c1';
+          ctx.strokeRect(x * tileSize, y * tileSize, tileSize, tileSize);
+        }
+      }
+      drawPlayer();
+    }
+
+    function drawPlayer() {
+      const img = new Image();
+      img.src = 'https://cdn-icons-png.flaticon.com/512/616/616408.png'; // border collie
+      img.onload = () => {
+        ctx.drawImage(img, player.x * tileSize + 4, player.y * tileSize + 4, 32, 32);
+      };
+    }
+
+    function movePlayer(dx, dy) {
+      const newX = player.x + dx;
+      const newY = player.y + dy;
+      if (maze[newY][newX] === 0 || (newX === goal.x && newY === goal.y)) {
+        player.x = newX;
+        player.y = newY;
+        drawMaze();
+        if (player.x === goal.x && player.y === goal.y) {
+          document.getElementById('message').style.display = 'block';
+        }
+      }
+    }
+
+    function startGame() {
+      player = { x: 1, y: 1 };
+      document.getElementById('message').style.display = 'none';
+      drawMaze();
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startGame);
+
+    window.addEventListener('keydown', (e) => {
+      switch (e.key) {
+        case 'ArrowUp': movePlayer(0, -1); break;
+        case 'ArrowDown': movePlayer(0, 1); break;
+        case 'ArrowLeft': movePlayer(-1, 0); break;
+        case 'ArrowRight': movePlayer(1, 0); break;
+      }
+    });
+
+    drawMaze(); // Inicial
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+  startGame(); // inicia el juego
+  const audio = document.getElementById("miAudio");
+
+  audio.muted = false;
+  audio.currentTime = 0;
+  audio.play().catch((e) => {
+    console.log("Error al reproducir audio:", e);
+    alert("✨ Haz clic para activar el sonido.");
+  });
+});
+
+
+  </script>
+</body>
+</html>

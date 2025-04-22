@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Un regalo con amor 💐</title>
+  <style>
+    body {
+      margin: 0;
+      background: #e8f0ff;
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      text-align: center;
+    }
+
+    .rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .drop {
+      position: absolute;
+      width: 2px;
+      height: 15px;
+      background: rgba(173, 216, 230, 0.5);
+      bottom: 100%;
+      animation: fall 2s linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh);
+      }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #flowers {
+      animation: pulse 5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.03); }
+    }
+
+    #note {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #8b0000;
+      font-weight: bold;
+      cursor: pointer;
+      animation: fadeIn 2s ease-in;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 2px dashed #ff69b4;
+      padding: 20px;
+      border-radius: 15px;
+      color: #b22222;
+      max-width: 90%;
+      font-size: 1.2rem;
+      animation: zoom 1.5s forwards;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rain" id="rain"></div>
+
+  <div class="container">
+    <div id="flowers">
+      <img src="C:\Users\frida\OneDrive\Escritorio\MIA\img\flores.png" alt="Ramo de flores" width="350">
+    </div>
+
+    <div id="note" onclick="showMessage()">Da click en la aquí</div>
+    <div id="message">Para ti, puede que no te las dé físicamente pero sí hago esto con mucho mucho amor. Te amo muchísimo, mi vida. 💖</div>
+  </div>
+
+  <script>
+    // Crear gotas de lluvia
+    const rainContainer = document.getElementById('rain');
+    for (let i = 0; i < 120; i++) {
+      const drop = document.createElement('div');
+      drop.classList.add('drop');
+      drop.style.left = `${Math.random() * 100}vw`;
+      drop.style.animationDuration = `${1 + Math.random() * 1.5}s`;
+      drop.style.animationDelay = `${Math.random() * 3}s`;
+      rainContainer.appendChild(drop);
+    }
+
+    function showMessage() {
+      document.getElementById('message').style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

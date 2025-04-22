@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Recuerdos Especiales 💖</title>
+  <style>
+    body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffe4e1, #fff0f5);
+  font-family: 'Fredoka', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.titulo {
+  font-size: 1.5rem;
+  color: #d62839;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto;
+  box-sizing: border-box;
+}
+
+.recuerdo {
+  width: 210px;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.recuerdo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.recuerdo:hover img {
+  transform: scale(1.05);
+}
+
+.descripcion {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.recuerdo:hover .descripcion {
+  display: block;
+}
+
+.pie-nota {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.boton {
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+  background-color: #e63946;
+}
+
+.audio-container {
+  margin-top: 20px;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="titulo">Algunos recuerdos 💖</div>
+  <div class="galeria">
+        <div class="recuerdo">
+          <img src="img/ney1.png" alt="Recuerdo 1">
+          <div class="descripcion">Una de las muchas fotos que cuando veo pienso "que afortunada soy de tenerla" 💕. 25-Nov-2022.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\ney6.png" alt="Recuerdo 2">
+          <div class="descripcion">El día que nos dimos nuestro primer beso 💖. 30-Nov-2022.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\dibujo.jpeg" alt="Recuerdo 3">
+          <div class="descripcion">Me gusta mucho recordar ese dibujito 💫. 11-nov-2022.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\primeraft.jpeg" alt="Recuerdo 4">
+          <div class="descripcion">Una de nuestras primeras fotos juntas 🫶. 13-Mar-2023</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\reencuentro.jpeg" alt="Recuerdo 5">
+          <div class="descripcion">Un reencuentro totalmente esperado ✨. 14-mayo-2024.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\ojitos.jpeg" alt="Recuerdo 6">
+          <div class="descripcion">Los ojos más bonitos 💝. 6-Oct-2024.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\14feb.png" alt="Recuerdo 7">
+          <div class="descripcion">Nuestro primer San Valentín 💗. 14-Feb-2023.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\ney5.png" alt="Recuerdo 8">
+          <div class="descripcion">Como fue empezando todo 💌. Algún lunes de un octubre del 2022.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\atp.jpeg" alt="Recuerdo 9">
+          <div class="descripcion">Un álbum que me dió en la madre jaja 🌺. 14-Ago-2024.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img/abrazo.jpeg" alt="Recuerdo 10">
+          <div class="descripcion">Un abrazo libre y confortante 💐. 28-Sep-2024.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img/corazon.jpeg" alt="Recuerdo 11">
+          <div class="descripcion">Un detalle con todo  el corazón 🌟. 30-Nov-2024.</div>
+        </div>
+        <div class="recuerdo">
+          <img src="img\kiss.jpeg" alt="Recuerdo 12">
+          <div class="descripcion">De  mis fotos favoritas 🌷. 26-Ene-2025.</div>
+        </div>    
+
+
+  <p class="notita">Pasa el mouse sobre cada foto 😉</p>
+
+  <div class="audio-container">
+    <audio controls>
+      <source src="te quiero tanto.mp3" type="audio/mp3">
+    </audio>
+  </div>
+
+  <button class="boton" onclick="window.location.href='juego.html'">Continúa por aquí..</button>
+  <button class="boton" onclick="window.location.href='rompecabezas.html'">Ooooh por aquí...😉</button>
+
+</body>
+</html>
+
+
+
